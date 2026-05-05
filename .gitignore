@@ -1,0 +1,32 @@
+# 运行产出 - 不提交
+output/
+tmp_cache/
+logs/
+database/
+*.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# 配置
+config.toml
+douyin_cookies.json
+# 但保留模板
+!config.toml.example
+
+# 大文件
+*.mp3
+*.mp4
+*.wav
+*.npy
+
+# 系统
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

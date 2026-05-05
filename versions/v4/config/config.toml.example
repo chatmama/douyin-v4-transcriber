@@ -1,0 +1,92 @@
+# 抖音转写流水线 v4 — 配置模板
+# 复制为 config.toml 并填写真实值
+# cp config.toml.example config.toml
+
+[general]
+# 项目目录 (绝对路径)
+project_root = "/path/to/your/versions/v4"
+# 数据目录
+data_dir = "data"
+# 日志目录
+log_dir = "logs"
+
+[database]
+# SQLite 数据库路径
+path = "database/pipeline.db"
+
+[accounts]
+# 要扫描的抖音账号（可添加多个）
+[[accounts.entries]]
+name = "账号名称A"
+sec_uid = "MS4wLjABAAAA_your_douyin_sec_uid_here"
+enabled = true
+
+[[accounts.entries]]
+name = "账号名称B"
+sec_uid = "MS4wLjABAAAA_your_douyin_sec_uid_here"
+enabled = true
+
+[scanner]
+# 每个账号扫描间隔(秒)
+interval_seconds = 120
+# 请求超时(秒)
+request_timeout = 30
+# 每次最大视频数
+max_videos_per_account = 9999
+
+[downloader]
+# 下载超时(秒)
+curl_timeout = 30
+# mp4最小有效大小(字节)
+min_file_size = 100000
+# 并发下载数
+concurrency = 2
+
+[transcriber]
+# Whisper 模型: large-v3 / medium / small
+model = "large-v3"
+# 计算类型: int8_float16 / float16 / float32
+compute_type = "int8_float16"
+# GPU 同时转录路数
+concurrency = 2
+# 单个音频超时(秒)
+timeout = 600
+
+[chrome]
+# Chrome DevTools Protocol 地址
+cdp_url = "http://127.0.0.1:9222"
+# 超时(秒)
+timeout = 5
+# Chrome 用户数据目录（保持登录态）
+user_data_dir = "/tmp/chrome_douyin_persist"
+
+[cookies]
+# 抖音 cookie 文件路径（从 Chrome 导出）
+file = "/path/to/your/douyin_cookies.json"
+# User-Agent
+user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+
+[wordpress]
+# WordPress 站点地址
+url = "http://your-wordpress-site:8080"
+# 管理员账号
+username = "your_admin_username"
+password = "your_admin_password"
+# 是否生成特色图片（需要 ImageMagick）
+generate_featured_image = true
+# 中文字体路径（特色图片用）
+featured_image_font = "/usr/share/fonts/truetype/wqy/wqy-microhei.ttc"
+
+[cleaner]
+# 缓存最大(GB)
+max_cache_gb = 10
+# 清理间隔(秒)
+interval_seconds = 300
+# 保留已完成视频的mp4/MP3天数
+keep_days = 7
+
+[monitor]
+# 检查间隔(秒)
+interval_seconds = 30
+# 失败告警阈值
+failure_threshold = 10
